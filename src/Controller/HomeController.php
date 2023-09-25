@@ -133,7 +133,7 @@ class HomeController extends AbstractController
 						$session->set('userRole', $fetchCredentials->getUserRole());
 						return $this->redirectToRoute('app_home');
 					} else {
-						return $this->render('login/index.html.twig', [
+						return $this->render('home/login.html.twig', [
 							'userValue' => $userEmail,
 							'userPassword' => $userPassword,
 							'invalidPassword' => "Please enter valid password",
@@ -144,7 +144,7 @@ class HomeController extends AbstractController
 						]);
 					}
 				} else {
-					return $this->render('login/index.html.twig', [
+					return $this->render('home/login.html.twig', [
 						'userValue' => $userEmail,
 						'userPassword' => $userPassword,
 						'invalidValue' => "Please enter valid email",
