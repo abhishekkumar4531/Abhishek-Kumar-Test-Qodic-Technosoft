@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+  <h1>Welcome buddy</h1>
+  <div class="w-75">
+    {% if userDataList is defined %}
+      {% if userRole is defined %}
+        {% if userRole == "Manager" %}
+          {% for data in userDataList %}
+            <ul class="d-flex justify-content-evenly">
+              <li><img src="{{ data.userImage }}" alt="" width="70" height="70"></li>
+              <li>{{ data.firstName}}</li>
+              <li>{{ data.lastName }}</li>
+              <li>{{ data.userEmail }}</li>
+              <li>{{ data.userPhone }}</li>
+              <li>{{ data.userRole }}</li>
+            </ul>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

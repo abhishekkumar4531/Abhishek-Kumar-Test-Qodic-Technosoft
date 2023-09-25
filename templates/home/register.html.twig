@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User | Registration{% endblock %}
+
+{% block body %}
+<div class = "d-flex justify-content-center p-3">
+  <div class = "w-75">
+    <form action="/register" method="post" enctype="multipart/form-data">
+      <h1>Registration page</h1>
+      <dl>
+        <dt><label for="firstName">Enter First Name</label></dt>
+        <dd>
+          <input type="text" name="firstName" id="firstName" required 
+          onblur="checkFname()" class="form-control">
+        </dd>
+        <dd class="error-msg" id="invalid_fname"></dd>
+
+        <dt><label for="lastName">Enter Last Name</label></dt>
+        <dd>
+          <input type="text" name="lastName" id="lastName" required 
+          onblur="checkLname()" class="form-control">
+        </dd>
+        <dd class="error-msg" id="invalid_lname"></dd>
+
+        <dt><label for="userEmail">Enter Email address</label></dt>
+        <dd>
+          <input type="email" name="userEmail" id="userEmail" required 
+          onblur="checkEmailStatus()" class="form-control">
+        </dd>
+        <dd class="success-msg" id="email_success"></dd>
+        <dd class="error-msg" id="email_status"></dd>
+
+        <dt><label for="userPhone">Enter Phone number</label></dt>
+        <dd>
+          <input type="text" name="userPhone" id="userPhone" required 
+          onblur="checkPhoneNo()" class="form-control">
+        </dd>
+        <dd class="error-msg" id="invalid_phone"></dd>
+
+        <dt><label for="userPassword">Enter password</label></dt>
+        <dd>
+          <input type="password" name="userPassword" id="userPassword" required
+          onblur="checkPasswordStatus()" class="form-control">
+        </dd>
+        <dd class="success-msg" id="pwd_success"></dd>
+        <dd class="error-msg" id="pwd_status"></dd>
+
+        <dt><label for="confirmPassword">Confirm Password</label></dt>
+        <dd>
+          <input type="password" name="confirmPassword" id="confirmPassword" 
+          onblur="confirmPassword()" class="form-control" required>
+        </dd>
+        <dd class="error-msg" id="cnfPwd_status"></dd>
+
+        <dt><label for="userImage">Upload your image</label></dt>
+        <dd>
+          <input type="file" name="userImage" id="userImage" required
+          class = "form-control">
+        </dd>
+        <dd>
+          <img id="imagePreview" src="" alt="Profile Picture">
+          <button type="button" id="uploadButton">Upload</button>
+          <button type="button" id="deleteButton">Delete</button>
+        </dd>
+
+        <dd>
+          <button class="btn btn-primary" name="registrationButton" id="submitButton">
+            Submit
+          </button>
+        </dd>
+
+        <dd>
+          <a href="/login">Exiting User?</a>
+        </dd>
+      </dl>
+    </form>
+  </div>
+</div>
+{% endblock %}

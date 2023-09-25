@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/assets/js/update.js"></script>
+    <script src="/assets/js/validations.js"></script>
+    <script src="/assets/js/imagePreview.js"></script>
+    <style>
+      ul li {
+        list-style: none;
+        width: 14%;
+      }
+      .success-msg {
+        color: green;
+      }
+      .error-msg {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ms-3 me-3">
+      <!-- Navbar start -->
+      <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <div class="">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="/home" class="nav-item nav-link active text-dark"><i class="bi bi-house-door"></i> Home</a>
+              <a href="{{ loggedOpt }}" class="nav-item nav-link text-dark"><i class="bi bi-person"></i> {{ loggedValue }}</a>
+              <a href="{{ loginOut }}" class="nav-item nav-link text-dark"><i class="bi bi-person"></i> {{ logValue }}</a>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>

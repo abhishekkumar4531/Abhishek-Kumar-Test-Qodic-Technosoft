@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+  <h1>Welcome buddy</h1>
+  <div class="w-75">
+    {% if userDataList is defined %}
+      {% if userRole is defined %}
+        {% if userRole == "Super-Admin" %}
+          {% for data in userDataList %}
+            <ul class="d-flex justify-content-evenly">
+              <li><img src="{{ data.userImage }}" alt="" width="70" height="70"></li>
+              <li>{{ data.firstName}}</li>
+              <li>{{ data.lastName }}</li>
+              <li>{{ data.userEmail }}</li>
+              <li>{{ data.userPhone }}</li>
+              <li>
+                <select name="userRole" class="userRole form-select" data-user-id="{{ data.Id }}">
+                  {% for role in availableRoles %}
+                      <option value="{{ role }}"{% if role == data.userRole %} selected{% endif %}>
+                          {{ role }}
+                      </option>
+                  {% endfor %}
+                </select>
+              </li>
+              <li>
+                <button class="deleteUser btn btn-primary" data-user-id="{{ data.Id }}">
+                  <span class="bi bi-trash"></span>
+                </button>
+              </li>
+            </ul>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+
+    <div class="w-100 text-center">
+      <button class="addNewUser btn btn-primary">Add a user</button>
+    </div>
+
+    <div class="addUser w-50 ms-3">
+      <form action="/addUser" method="post" enctype="multipart/form-data">
+        <h1>Add a new user</h1>
+        <dl>
+          <dt><label for="firstName">Enter First Name</label></dt>
+          <dd>
+            <input type="text" name="firstName" id="firstName" required 
+            onblur="checkFname()" class="form-control">
+          </dd>
+          <dd class="error-msg" id="invalid_fname"></dd>
+
+          <dt><label for="lastName">Enter Last Name</label></dt>
+          <dd>
+            <input type="text" name="lastName" id="lastName" required 
+            onblur="checkLname()" class="form-control">
+          </dd>
+          <dd class="error-msg" id="invalid_lname"></dd>
+
+          <dt><label for="userEmail">Enter Email address</label></dt>
+          <dd>
+            <input type="email" name="userEmail" id="userEmail" required 
+            onblur="checkEmailStatus()" class="form-control">
+          </dd>
+          <dd class="success-msg" id="email_success"></dd>
+          <dd class="error-msg" id="email_status"></dd>
+
+          <dt><label for="userPhone">Enter Phone number</label></dt>
+          <dd>
+            <input type="text" name="userPhone" id="userPhone" required 
+            onblur="checkPhoneNo()" class="form-control">
+          </dd>
+          <dd class="error-msg" id="invalid_phone"></dd>
+
+          <dt><label for="userPassword">Enter password</label></dt>
+          <dd>
+            <input type="password" name="userPassword" id="userPassword" required
+            onblur="checkPasswordStatus()" class="form-control">
+          </dd>
+          <dd class="success-msg" id="pwd_success"></dd>
+          <dd class="error-msg" id="pwd_status"></dd>
+
+          <dt><label for="confirmPassword">Confirm Password</label></dt>
+          <dd>
+            <input type="password" name="confirmPassword" id="confirmPassword" 
+            onblur="confirmPassword()" class="form-control" required>
+          </dd>
+          <dd class="error-msg" id="cnfPwd_status"></dd>
+
+          <dt><label for="userImage">Upload your image</label></dt>
+          <dd>
+            <input type="file" name="userImage" id="userImage" required
+            class = "form-control">
+          </dd>
+          
+          <dt><label for="userRole">Select Role</label></dt>
+          <dd>
+            <select name="userRole" id="userRole" class="form-control">
+              <option value="Manager">Manager</option>
+              <option value="User">User</option>
+            </select>
+          </dd>
+  
+          <dd>
+            <button class="btn btn-primary" name="addButton" id="submitButton">
+              Add User
+            </button>
+          </dd>
+        </dl>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

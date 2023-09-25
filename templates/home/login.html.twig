@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User | Login{% endblock %}
+
+{% block body %}
+<div class = "d-flex justify-content-center p-3">
+  <div class = "w-75">
+    <form action="/login" method="post">
+      <h1>User Login-Page</h1>
+      <dt><label for="userEmail">Enter Email address</label></dt>
+        <dd>
+          <input type="email" name="userEmail" id="userEmail" required class="form-control">
+        </dd>
+        <dt><label for="userPassword">Enter password</label></dt>
+        <dd>
+          <input type="password" name="userPassword" id="userPassword" required
+          class="form-control">
+        </dd>
+
+        <dd>
+          <button class="btn btn-primary" name="loginButton" class="submitButton">
+            Submit
+          </button>
+        </dd>
+
+        <dd>
+          <a href="/register">New User?</a>
+        </dd>
+    </form>
+  </div>
+</div>
+{% endblock %}

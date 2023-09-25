@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User | Profile{% endblock %}
+
+{% block body %}
+<div class = "d-flex justify-content-center p-3">
+  <div class = "w-75">
+    <form action="/profile" method="post" enctype="multipart/form-data">
+      <h1>Welcome back</h1>
+      {% if userData is defined %}
+        <dl>
+          <dd>
+            <img src="{{ userData.userImage }}" alt="" width="100" height="100">
+          </dd>
+          <dt><label for="userImage">Update your image</label></dt>
+          <dd>
+            <input type="file" name="userImage" id="userImage"
+            class = "form-control">
+          </dd>
+          <dt><label for="firstName">Your First Name</label></dt>
+          <dd>
+            <input type="text" name="firstName" id="firstName" required class="form-control"
+            value="{{ userData.firstName }}">
+          </dd>
+          <dt><label for="lastName">Your Last Name</label></dt>
+          <dd>
+            <input type="text" name="lastName" id="lastName" required class="form-control"
+            value="{{ userData.lastName }}">
+          </dd>
+          <dt><label for="userEmail">Enter Email address</label></dt>
+          <dd>
+            <input type="email" name="userEmail" id="userEmail" required class="form-control"
+            readonly value="{{ userData.userEmail }}">
+          </dd>
+          <dt><label for="userPhone">Enter Phone number</label></dt>
+          <dd>
+            <input type="text" name="userPhone" id="userPhone" required class="fomr-control"
+            value="{{ userData.userPhone }}">
+          </dd>
+
+          <dd>
+            <button class="btn btn-primary" name="updateButton" id="submitButton">
+              Update
+            </button>
+          </dd>
+
+          <dd>
+            <a href="/">Go back</a>
+          </dd>
+        </dl>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}
